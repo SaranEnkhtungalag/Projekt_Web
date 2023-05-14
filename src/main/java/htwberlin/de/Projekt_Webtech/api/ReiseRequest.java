@@ -1,28 +1,19 @@
 package htwberlin.de.Projekt_Webtech.api;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import java.util.List;
-
-
-public class Reise {
-
+public class ReiseRequest {
     private long id;
     private String landname;
     private String reisename;
     private String description;
 
-    public Reise(long id, String landname, String reisename, String description) {
+    public ReiseRequest(long id, String landname, String reisename, String description) {
         this.id = id;
         this.landname = landname;
         this.reisename = reisename;
         this.description = description;
     }
 
-    public Reise() { }
+    public ReiseRequest() { }
 
     public String getDescription() {
         return description;

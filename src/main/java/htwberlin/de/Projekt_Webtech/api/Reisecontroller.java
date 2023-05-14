@@ -1,36 +1,77 @@
 package htwberlin.de.Projekt_Webtech.api;
 
+import htwberlin.de.Projekt_Webtech.persistence.ReiseEntity;
+import htwberlin.de.Projekt_Webtech.persistence.ReiseRepository;
 import htwberlin.de.Projekt_Webtech.service.ReiseService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 
 @RestController
 public class Reisecontroller {
 
-    @Autowired
-    ReiseService service;
+    private final ReiseService reiseService;
 
-    Logger logger = LoggerFactory.getLogger(Reisecontroller.class);
-
-    @PostMapping("/reise")
-    public Reise createReise(@RequestBody Reise reise) {
-        return service.save(reise);
+    public Reisecontroller(ReiseService reiseService) {
+        this.reiseService = reiseService;
     }
 
-    @GetMapping("/reise/{id}")
-    public Reise getReise(@PathVariable String id) {
-        logger.info("Get ....", id);
-        Long reiseId = Long.parseLong(id);
-        return service.get(reiseId);
+//    @PostMapping("/api/v1/reisen")
+//    public Reise createReise(@RequestBody Reise reise) {
+//        return ReiseService.save(reise);
+//    }
+
+    @GetMapping(path = ("/api/v1/reisen"))
+    public ResponseEntity<List<Reise>> fetchReisen() {
+        return ResponseEntity.ok(reiseService.findAll());
     }
+
+    @GetMapping(path = ("/api/v1/reisen/{id}"))
+    public ResponseEntity<Reise> fetchReiseById(@PathVariable Long id) {
+        var reise = reiseService.findById(id);
+        return reise != null ? ResponseEntity.ok(reise) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping(path = ("/api/v1/reisen"))
+    public ResponseEntity<Void> createReise(@RequestBody ReiseRequest request) throws URISyntaxException {
+        var reise = reiseService.create(request);
+        URI uri = new URI("/api/v1/reisen" + reise.getId());
+        return ResponseEntity.created(uri).build();
+    }
+
+//    @GetMapping(path = ("/api/v1/reisen/{id}"))
+//    public ResponseEntity<Reise> fetchReiseById(@PathVariable Long id) {
+//        var reise = reiseService.findById(id);
+//        return reise != null? ResponseEntity.ok(reise) : ResponseEntity.notFound().build();
+//    }
+//
+
+
+//    @Autowired
+//    ReiseService service;
+//
+//    Logger logger = LoggerFactory.getLogger(Reisecontroller.class);
+//
+//    @PostMapping("/api/v1/reisen")
+//    public Reise createReise(@RequestBody Reise reise) {
+//        return ReiseService.save(reise);
+//    }
+//
+//    @GetMapping("/api/v1/reisen/{id}")
+//    public Reise getReise(@PathVariable String id) {
+//        logger.info("Get ....", id);
+//        Long reiseId = Long.parseLong(id);
+//        return service.get(reiseId);
+//    }
+
 //
 //
 //    public List<Reise> reise;
