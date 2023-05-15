@@ -33,7 +33,7 @@ public class ReiseService {
     }
 
     public Reise create(ReiseRequest request) {
-        var ereisen = new ReiseEntity(request.getId(), request.getLandname(), request.getReisename(), request.getDescription());
+        var ereisen = new ReiseEntity(request.getLandname(), request.getReisename(), request.getDescription());
         ereisen = reiseRepository.save(ereisen);
         return reisePush.pushEntity(ereisen);
     }

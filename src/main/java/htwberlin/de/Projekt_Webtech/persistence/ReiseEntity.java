@@ -16,8 +16,7 @@ public class ReiseEntity {
     @Column(name = "description")
     private String description;
 
-    public ReiseEntity(Long id, String landname, String reisename, String description) {
-        this.id = id;
+    public ReiseEntity(String landname, String reisename, String description) {
         this.landname = landname;
         this.reisename = reisename;
         this.description = description;

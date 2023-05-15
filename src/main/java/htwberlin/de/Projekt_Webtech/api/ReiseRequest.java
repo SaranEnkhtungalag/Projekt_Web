@@ -1,18 +1,15 @@
 package htwberlin.de.Projekt_Webtech.api;
 
 public class ReiseRequest {
-    private long id;
     private String landname;
     private String reisename;
     private String description;
 
-    public ReiseRequest(long id, String landname, String reisename, String description) {
-        this.id = id;
+    public ReiseRequest(String landname, String reisename, String description) {
         this.landname = landname;
         this.reisename = reisename;
         this.description = description;
     }
-
     public ReiseRequest() { }
 
     public String getDescription() {
@@ -21,14 +18,6 @@ public class ReiseRequest {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getLandname() {
