@@ -28,7 +28,7 @@ public class BewertungService {
     public Bewertung create(BewertungRequest request){
         var reise = reiseRepository.findById(request.getId()).orElseThrow();
         var stern = Stern.valueOf(request.getStern()).getVoit();
-        var bewertungEntity = new BewertungEntity(request.getAuthorName(), stern, reise);
+        var bewertungEntity = new BewertungEntity(request.getAuthorName(), request.getReiseName(), stern, reise);
         bewertungEntity = bewertungRepository.save(bewertungEntity);
         return requestEntity(bewertungEntity);
     }

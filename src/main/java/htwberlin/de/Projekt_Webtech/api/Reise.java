@@ -14,12 +14,14 @@ public class Reise {
     private String landname;
     private String reisename;
     private String description;
+    private List<Long> bewertung;
 
-    public Reise(long id, String landname, String reisename, String description) {
+    public Reise(long id, String landname, String reisename, String description, List<Long> bewertung) {
         this.id = id;
         this.landname = landname;
         this.reisename = reisename;
         this.description = description;
+        this.bewertung = bewertung;
     }
 
     public Reise() { }
@@ -54,5 +56,13 @@ public class Reise {
 
     public void setReisename(String reisename) {
         this.reisename = reisename;
+    }
+
+    public List<Long> getBewertung() {
+        return bewertung;
+    }
+
+    public void setBewertung(List<Long> bewertung) {
+        this.bewertung = bewertung;
     }
 }

@@ -1,7 +1,10 @@
 package htwberlin.de.Projekt_Webtech.persistence;
-
-
+import htwberlin.de.Projekt_Webtech.api.BewertungEntity;
 import jakarta.persistence.*;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "reisen")
 public class ReiseEntity {
@@ -15,6 +18,9 @@ public class ReiseEntity {
     private String reisename;
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "reiseId", fetch = FetchType.EAGER)
+    private List<BewertungEntity> bewertungen = new ArrayList<>();
 
     public ReiseEntity(String landname, String reisename, String description) {
         this.landname = landname;
@@ -49,5 +55,13 @@ public class ReiseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<BewertungEntity> getBewertungen() {
+        return bewertungen;
+    }
+
+    public void setBewertungen(List<BewertungEntity> bewertungen) {
+        this.bewertungen = bewertungen;
     }
 }

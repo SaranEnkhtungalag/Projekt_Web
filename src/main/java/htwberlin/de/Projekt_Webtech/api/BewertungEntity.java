@@ -12,15 +12,19 @@ public class BewertungEntity {
   private Long id;
   @Column(name = "authorname")
   private String authorName;
+  @Column(name = "reisename")
+  private String reisename;
   @Column(name = "stern")
   private int stern;
-  @Column(name = "reisename")
-  private ReiseEntity reisename;
+  @ManyToOne(cascade = CascadeType.MERGE)
+  @JoinColumn(name= "reiseId", referencedColumnName = "id")
+  private ReiseEntity reiseId;
 
-  public BewertungEntity(String authorName, int stern, ReiseEntity reisename) {
+  public BewertungEntity(String authorName, String reisename, int stern, ReiseEntity reiseId) {
     this.authorName = authorName;
     this.stern = stern;
     this.reisename = reisename;
+    this.reiseId = reiseId;
   }
 
   public BewertungEntity() {  }
@@ -35,11 +39,19 @@ public class BewertungEntity {
 
   public void setStern(int stern) { this.stern = stern;}
 
-  public ReiseEntity getReisename() {
+  public String getReisename() {
     return reisename;
   }
 
-  public void setReisename(ReiseEntity reisename) {
+  public void setReisename(String reisename) {
     this.reisename = reisename;
+  }
+
+  public ReiseEntity getReiseId() {
+    return reiseId;
+  }
+
+  public void setReiseId(ReiseEntity reiseId) {
+    this.reiseId = reiseId;
   }
 }

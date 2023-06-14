@@ -6,10 +6,10 @@ public class Bewertung {
 
         private Long id;
         private String authorName;
-        private ReiseEntity reisename;
+        private String reisename;
         private int stern;
 
-        public Bewertung(Long id, String authorName, ReiseEntity reisename, int stern) {
+        public Bewertung(Long id, String authorName, String reisename, int stern) {
             this.id = id;
             this.authorName = authorName;
             this.reisename = reisename;
@@ -24,9 +24,9 @@ public class Bewertung {
 
         public void setId(Long id) { this.id = id;}
 
-        public ReiseEntity getReisename() { return reisename;}
+        public String getReisename() { return reisename;}
 
-        public void setReisename(ReiseEntity reisename) { this.reisename = reisename; }
+        public void setReisename(String reisename) { this.reisename = reisename; }
 
         public String getAuthorName() { return authorName; }
 
