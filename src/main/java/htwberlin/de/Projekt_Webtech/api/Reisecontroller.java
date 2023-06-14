@@ -24,11 +24,6 @@ public class Reisecontroller {
         this.reiseService = reiseService;
     }
 
-//    @PostMapping("/api/v1/reisen")
-//    public Reise createReise(@RequestBody Reise reise) {
-//        return ReiseService.save(reise);
-//    }
-
     @GetMapping(path = ("/api/v1/reisen"))
     public ResponseEntity<List<Reise>> fetchReisen() {
         return ResponseEntity.ok(reiseService.findAll());
